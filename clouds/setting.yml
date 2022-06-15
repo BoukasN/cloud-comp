@@ -1,0 +1,49 @@
+﻿---
+- hosts: service
+  remote_user: docker
+ user: docker
+ 
+  tasks:
+
+     # ------------------------
+     # apt update
+     # -------------------------
+    - name: apt update packages
+      become: true
+      apt:
+        update_cache: 'yes'
+        force_apt_get: 'yes'
+        upgrade: 'dist'
+        install_recommends: true
+        autoremove: true
+
+     # ------------------------
+     # apt install packages
+     # -------------------------
+    - name: apt install packages
+      become: true
+      apt:
+        update_cache: 'yes'
+        force_apt_get: 'yes'
+        install_recommends: true
+        autoremove: true
+        name: "{{ packages }}"
+      vars:
+        packages:
+         - build-essential
+         - make
+         - git
+         - flex
+         - bison
+         - curl
+         - lynx
+         - python-dev
+
+- name: clone service 
+          become: true
+          git:
+            repository: https://git.swarmlab.io:3000/swarmlab/poc-datacollector
+            dest: /home/{{ docker }}/
+            clone: yes
+            update: yes
+# ---------------------------------------- >>> 

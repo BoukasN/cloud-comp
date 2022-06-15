@@ -1,0 +1,79 @@
+          # your private key
+PrivateKey={MIIEowIBAAKCAQEAuTSOVBabhi51sZBrX1UKOpVXfbCEQZOL0YjZMKD6jXTOglo3
+v49mqZypXm8Exfpfz62FyYMEQ60LyVB2OEt8YkxMazqegWWsuBBvsp41hq63ujra
+kpnL5dEDixfMsPxUl1hWG3pVXE0+WgwB/QiHf/Lmi4voHgSHHsygrDSAu2+YqUVk
+oLguJ4lSQSE5KdhvM6/vg9Z7R23MbR8NYCVmb6yA2DaiDpfrtXQGguE2oku2ub33
+iOpKaIuH055YVrljLIHNI2uinvfP0pyFz4LBuKHQn13uJ4r8RTGfpREgDwofjNmI
+hpGqYtfUd7+icVjqs3c/bilcbidR0qV682KDxwIDAQABAoIBACi7CzYpBqka3J1h
+YovDuw0pPOWShXOajFxXmVRdgtzLPINkbfA+DFju8Dypc8ZKivm0csDfhHeRvg7X
+GDjHOSKxHvlSGfvhLXwJeVcx/hmRoSxetyUYl8QCFKJpaIXf6IakUcOXQuCayESr
+cWCBmLMl61fzO+gmHMVEQW292jXeNB+OUbNnWvlguCCordQpNl1ypI5n7eLlubWK
+J+ctW9IFxlI5rX8PuJn3yXDPELMZC76YPaLA/cElz/Lwo+nvaYNO5XNyjnVsqDiw
+uZnJa3eEJWkTy2OBEj2hnrHZQOAnUfTiHcuvEdISrnM7uGKUsp1aw4ZAywUi27jq
+jaGWH/ECgYEAzEusET2zLDuLzjgwkxGt1RLVzYQ5EY8rz93lfUrzyNVin+qgU2Rt
+0uDKa7Lz8sPgaWY1Waa3mu5Hgkhbt+kxCnF3flcXeMol22xjSKJnqAQeYfNIvI4B
+fTZxntvNVIUJ4TAoa6gLjRGW8+kjMyOUnW5Is8K4A/AD7DbCYComiekCgYEA6BQF
+nVDrWlOnPO2OC3IcdFHSMXfV497OwV9lFsgsm1uh4cfX7JI8Sn+BfdCBBBns7hge
+8rItRuBQir5ixyx7ulGQUw4MDWmybxLQvdC+kzJTowMYC4x95wW6we/TlM7TAKLr
+pLbvc1E1gBg1UR8IwIsDpzM5w6sYbDPaCVLkYi8CgYBmVuoFYQEmgVXRojhDFDIe
+cOcFotzrvOrXoHLbxvZEfxB+x4w0+jRB1TXRqb2muRTr97V2CZwkUoUj8Jdxk7Fr
+Z9fSRFKPwcQhHTTHKAQBGL8XlkWznveEAAf+6mD7nAGM+xDkjTPsIQmbegiWD5bd
+HmfxFPQVlOCCLhRFFBhmMQKBgQDjeYSLTx5w+d/Jc5swEthbFzvsquYmpWSI26Ut
+MGWwnZ9Nu+EkC64240WceXuL9pFqSpBDGGwStZmcdMJDMZHQ7VOGZRVhLEHuZ0Xd
+V7cEdmbOOCEgaMObZt1IbHc5u4PMcuSAHaMUp/vFo3TXH5EnkNqyzx4GcTTOEgDb
+9LjQlwKBgDcJwqZWwMkUMTidsMJZluPC5pmrnOdP02EgdROMvNskotWJdHpyZYTw
+So9+GocOYA15Rm1o6k3HWLmxKDlE8f9WSFgvQq8VnfzYOJT2eOIqd3lNLTHKzmvs
+aZBPPmNTt+2gC5cSi8NPogU1T8LtAil6KKC4sfTUd/1v3sV+fGs8}
+# port running in your container  (inside)
+ListenPort=51820
+
+# private key from server
+PublicKey={AAAAB3NzaC1yc2EAAAADAQABAAABAQC5NI5UFpuGLnWxkGtfVQo6lVd9sIRBk4vRiNkwoPqNdM6CWje/
+j2apnKlebwTF+l/PrYXJgwRDrQvJUHY4S3xiTExrOp6BZay4EG+ynjWGrre6OtqSmcvl0QOLF8yw/FSXWFYbelVcTT5aDAH9CId/8
+uaLi+geBIcezKCsNIC7b5ipRWSguC4niVJBITkp2G8zr++D1ntHbcxtHw1gJWZvrIDYNqIOl+u1dAaC4TaiS7a5vfeI6kpoi4fTnlh
+WuWMsgc0ja6Ke98/SnIXPgsG4odCfXe4nivxFMZ+lESAPCh+M2YiGkapi19R3v6JxWOqzdz9uKVxuJ1HSpXrzYoPH}
+# server info
+#Endpoint=[IPserver]:[port]
+Endpoint=83.212.80.72:38521
+
+# all 
+#AllowedIPs="0.0.0.0/0, ::/0"
+# only subnet
+AllowedIPs="10.1.2.64/26"
+
+WG_PersistentKeepalive=25
+
+# name to peer 
+NETWORK_INT=wg2
+# info for peer server
+NETWORK_IP=10.1.2.68
+NETWORK_NETWORK=10.1.2.68/26
+
+cat << FOE > /etc/swlab/wg0.conf
+# your server
+[Interface]
+  PrivateKey = $PrivateKey
+  ListenPort = $ListenPort
+
+# peer to connect to
+[Peer]
+  PublicKey = $PublicKey
+  Endpoint = $Endpoint
+  AllowedIPs = $AllowedIPs
+  PersistentKeepalive = $WG_PersistentKeepalive
+
+FOE
+
+          ip link set $NETWORK_INT down
+          ip link del $NETWORK_INT
+          ip link add $NETWORK_INT type wireguard
+          sleep 1
+          wg setconf $NETWORK_INT /etc/swlab/wg0.conf
+          sleep 1
+          ip addr add $NETWORK_NETWORK dev $NETWORK_INT
+          sysctl -w net.ipv4.conf.all.rp_filter=2
+          ip link set mtu 1420 up dev $NETWORK_INT
+          ip link set up dev $NETWORK_INT
+          ip route add default via $NETWORK_IP metric 2 table 200
+          ip route show table 200 | grep -w $NETWORK_IP
+          ip rule add table main suppress_prefixlength 0
